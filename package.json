@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/SonicGarden/next-csr-firebase-rewrites-updater/issues"
   },
-  "homepage": "https://github.com/SonicGarden/next-csr-firebase-rewrites-updater#readme"
+  "homepage": "https://github.com/SonicGarden/next-csr-firebase-rewrites-updater#readme",
+  "dependencies": {
+    "glob": "^7.1.7"
+  }
 }
