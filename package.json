@@ -1,0 +1,19 @@
+{
+  "name": "@sonicgarnde/next-csr-firebase-rewrites-updater",
+  "version": "1.0.0",
+  "description": "Script to update firebase hosting rewrites for Next.js CSR application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SonicGarden/next-csr-firebase-rewrites-updater.git"
+  },
+  "author": "hiropon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SonicGarden/next-csr-firebase-rewrites-updater/issues"
+  },
+  "homepage": "https://github.com/SonicGarden/next-csr-firebase-rewrites-updater#readme"
+}
