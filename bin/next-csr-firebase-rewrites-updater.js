@@ -16,18 +16,16 @@ glob(pattern, (err, files) => {
     return;
   }
 
-  const targetFiles = files.filter((_) => /\[*.\]/.test(_));
-  console.log(targetFiles);
+  const targetFiles = files.filter((_) => /\[[^[]+\]/.test(_));
   const destinations = targetFiles.map((_) => _.replace(hostingPublic, ''));
   const newRewrites = destinations.map((_) => ({
-    source: _.replace('.html', '').replaceAll(/\[([^[]+)\]/g, ':$1'),
+    source: _.replace('.html', '').replace(/\[([^[]+)\]/g, ':$1'),
     destination: _,
   }));
   const margedRewrites = newRewrites.reduce(
     (acc, cur) => (acc.some((_) => _.source === cur.source) ? acc : [...acc, cur]),
     rewrites
   );
-  console.log(margedRewrites);
   const newConfig = {
     ...config,
     hosting: { ...hosting, rewrites: margedRewrites, cleanUrls: true },
