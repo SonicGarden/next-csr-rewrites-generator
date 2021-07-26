@@ -20,7 +20,7 @@ glob(pattern, (err, files) => {
   console.log(targetFiles);
   const destinations = targetFiles.map((_) => _.replace(hostingPublic, ''));
   const newRewrites = destinations.map((_) => ({
-    source: _.replace('.html', '').replace(/\[(.+)\]/, ':$1'),
+    source: _.replace('.html', '').replaceAll(/\[([^[]+)\]/g, ':$1'),
     destination: _,
   }));
   const margedRewrites = newRewrites.reduce(
