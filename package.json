@@ -2,7 +2,9 @@
   "name": "@sonicgarnde/next-csr-firebase-rewrites-updater",
   "version": "1.0.0",
   "description": "Script to update firebase hosting rewrites for Next.js CSR application",
-  "main": "index.js",
+  "bin": {
+    "next-csr-firebase-rewrites-updater": "bin/next-csr-firebase-rewrites-updater"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
