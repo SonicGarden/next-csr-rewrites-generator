@@ -1,7 +1,7 @@
 {
   "name": "@sonicgarnde/next-csr-firebase-rewrites-generator",
   "version": "1.0.0",
-  "description": "Deploy helper script to generate firebase hosting rewrites for Next.js CSR application",
+  "description": "Deploy helper command to generate firebase hosting rewrite rules for Next.js CSR application",
   "bin": {
     "next-csr-firebase-rewrites-generator": "bin/next-csr-firebase-rewrites-generator.js"
   },
