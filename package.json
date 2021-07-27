@@ -1,23 +1,23 @@
 {
-  "name": "@sonicgarnde/next-csr-firebase-rewrites-updater",
+  "name": "@sonicgarnde/next-csr-firebase-rewrites-generator",
   "version": "1.0.0",
-  "description": "Deploy helper script to update firebase hosting rewrites for Next.js CSR application",
+  "description": "Deploy helper script to generate firebase hosting rewrites for Next.js CSR application",
   "bin": {
-    "next-csr-firebase-rewrites-updater": "bin/next-csr-firebase-rewrites-updater.js"
+    "next-csr-firebase-rewrites-generator": "bin/next-csr-firebase-rewrites-generator.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/SonicGarden/next-csr-firebase-rewrites-updater.git"
+    "url": "git+ssh://git@github.com/SonicGarden/next-csr-firebase-rewrites-generator.git"
   },
   "author": "hiropon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SonicGarden/next-csr-firebase-rewrites-updater/issues"
+    "url": "https://github.com/SonicGarden/next-csr-firebase-rewrites-generator/issues"
   },
-  "homepage": "https://github.com/SonicGarden/next-csr-firebase-rewrites-updater#readme",
+  "homepage": "https://github.com/SonicGarden/next-csr-firebase-rewrites-generator#readme",
   "dependencies": {
     "glob": "^7.1.7"
   },
