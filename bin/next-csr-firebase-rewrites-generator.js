@@ -7,7 +7,7 @@ const glob = require('glob');
 const configPath = 'firebase.json';
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 const { hosting } = config;
-const { public: hostingPublic, rewrites } = hosting;
+const { public: hostingPublic, rewrites = [] } = hosting;
 const pattern = `${hostingPublic}/**/*.html`;
 
 glob(pattern, (err, files) => {
@@ -18,9 +18,9 @@ glob(pattern, (err, files) => {
 
   const targetFiles = files.filter((_) => /\[[^[\]/]+\]/.test(_));
   const destinations = targetFiles.map((_) => _.replace(hostingPublic, ''));
-  const newRewrites = destinations.map((_) => ({
-    source: _.replace('.html', '').replace(/\[([^[\]/]+)\]/g, ':$1'),
-    destination: _,
+  const newRewrites = destinations.map((destination) => ({
+    source: destination.replace('.html', '').replace(/\[([^[\]/]+)\]/g, ':$1'),
+    destination,
   }));
   const margedRewrites = newRewrites.reduce(
     (acc, cur) => (acc.some((_) => _.source === cur.source) ? acc : [...acc, cur]),
@@ -30,6 +30,6 @@ glob(pattern, (err, files) => {
     ...config,
     hosting: { ...hosting, rewrites: margedRewrites, cleanUrls: true },
   };
-  fs.writeFileSync('./firebase.json', JSON.stringify(newConfig, null, 2));
-  fs.appendFileSync('./firebase.json', '\n');
+  fs.writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
+  fs.appendFileSync(configPath, '\n');
 });
