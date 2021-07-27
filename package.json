@@ -1,7 +1,7 @@
 {
   "name": "@sonicgarnde/next-csr-firebase-rewrites-updater",
   "version": "1.0.0",
-  "description": "Script to update firebase hosting rewrites for Next.js CSR application",
+  "description": "Deploy helper script to update firebase hosting rewrites for Next.js CSR application",
   "bin": {
     "next-csr-firebase-rewrites-updater": "bin/next-csr-firebase-rewrites-updater.js"
   },
