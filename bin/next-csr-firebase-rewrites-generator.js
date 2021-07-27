@@ -16,10 +16,10 @@ glob(pattern, (err, files) => {
     return;
   }
 
-  const targetFiles = files.filter((_) => /\[[^[]+\]/.test(_));
+  const targetFiles = files.filter((_) => /\[[^[\]/]+\]/.test(_));
   const destinations = targetFiles.map((_) => _.replace(hostingPublic, ''));
   const newRewrites = destinations.map((_) => ({
-    source: _.replace('.html', '').replace(/\[([^[]+)\]/g, ':$1'),
+    source: _.replace('.html', '').replace(/\[([^[\]/]+)\]/g, ':$1'),
     destination: _,
   }));
   const margedRewrites = newRewrites.reduce(
