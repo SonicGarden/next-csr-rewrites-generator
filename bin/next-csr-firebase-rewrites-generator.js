@@ -1,19 +1,26 @@
 #!/usr/bin/env node
 'use strict';
 
-const fs = require('fs');
+const { exit } = require('process');
+const { readFileSync, writeFileSync, appendFileSync } = require('fs');
 const glob = require('glob');
 
+const errCode = 1;
 const configPath = 'firebase.json';
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const config = JSON.parse(readFileSync(configPath, 'utf8'));
 const { hosting } = config;
 const { public: hostingPublic, rewrites = [] } = hosting;
 const pattern = `${hostingPublic}/**/*.html`;
 
+if (!hostingPublic) {
+  console.error(`error: hosting.public attribute is not set in ${configPath}`);
+  exit(errCode);
+}
+
 glob(pattern, (err, files) => {
   if (err) {
-    console.error('failed to glob. err:', err);
-    return;
+    console.error('error: failed to glob. err:', err);
+    exit(errCode);
   }
 
   const targetFiles = files.filter((_) => /\[[^[\]/]+\]/.test(_));
@@ -30,6 +37,6 @@ glob(pattern, (err, files) => {
     ...config,
     hosting: { ...hosting, rewrites: margedRewrites, cleanUrls: true },
   };
-  fs.writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
-  fs.appendFileSync(configPath, '\n');
+  writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
+  appendFileSync(configPath, '\n');
 });
