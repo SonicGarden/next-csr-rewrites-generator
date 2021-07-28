@@ -12,7 +12,7 @@ yarn add @sonicgarden/next-csr-firebase-rewrites-generator
 
 Add this command to your deployment script
 
-pakcage.json:
+package.json:
 <pre>
 "scripts": {
   "deploy": "next build && next export && <strong>next-csr-firebase-rewrites-generator</strong> && firebase deploy"

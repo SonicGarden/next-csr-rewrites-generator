@@ -29,7 +29,7 @@ glob(pattern, (err, files) => {
     source: destination.replace('.html', '').replace(/\[([^[\]/]+)\]/g, ':$1'),
     destination,
   }));
-  const margedRewrites = newRewrites.reduce(
+  const mergedRewrites = newRewrites.reduce(
     (acc, cur) => (acc.some((_) => _.source === cur.source) ? acc : [...acc, cur]),
     rewrites
   );
