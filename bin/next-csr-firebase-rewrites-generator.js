@@ -35,7 +35,7 @@ glob(pattern, (err, files) => {
   );
   const newConfig = {
     ...config,
-    hosting: { ...hosting, rewrites: margedRewrites, cleanUrls: true },
+    hosting: { ...hosting, rewrites: mergedRewrites, cleanUrls: true },
   };
   writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
   appendFileSync(configPath, '\n');
