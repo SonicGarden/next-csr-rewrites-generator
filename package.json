@@ -1,9 +1,9 @@
 {
-  "name": "@sonicgarnde/next-csr-firebase-rewrites-generator",
+  "name": "@sonicgarnde/next-csr-rewrites-generator",
   "version": "1.0.0",
-  "description": "Deploy helper command to generate firebase hosting rewrite rules for Next.js CSR application",
+  "description": "Deploy helper command to generate rewrite rules for Next.js CSR application",
   "bin": {
-    "next-csr-firebase-rewrites-generator": "bin/next-csr-firebase-rewrites-generator/index.js"
+    "next-csr-rewrites-generate": "bin/next-csr-rewrites-generate/index.js"
   },
   "files": [
     "bin"
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/SonicGarden/next-csr-firebase-rewrites-generator.git"
+    "url": "git+ssh://git@github.com/SonicGarden/next-csr-rewrites-generator.git"
   },
   "author": "hiropon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SonicGarden/next-csr-firebase-rewrites-generator/issues"
+    "url": "https://github.com/SonicGarden/next-csr-rewrites-generator/issues"
   },
-  "homepage": "https://github.com/SonicGarden/next-csr-firebase-rewrites-generator#readme",
+  "homepage": "https://github.com/SonicGarden/next-csr-rewrites-generator#readme",
   "dependencies": {
     "command-line-args": "^5.1.3",
     "command-line-usage": "^6.1.1",
