@@ -42,6 +42,7 @@ const generate = () => {
     console.info('');
     writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
     appendFileSync(configPath, '\n');
+    console.info('generated!');
   });
 };
 
