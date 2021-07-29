@@ -48,6 +48,7 @@ try {
 
   const { generate } = require(`./${format}`);
   generate();
+  console.info('generated!');
 } catch (e) {
   console.error(e.message);
   exit(1);

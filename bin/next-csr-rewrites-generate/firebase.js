@@ -30,10 +30,16 @@ const generate = () => {
       ...rewrites.filter(({ destination }) => !isDynamicRoute(destination)),
       ...newRewrites,
     ];
+    const newHosting = { ...hosting, rewrites: mergedRewrites, cleanUrls: true };
     const newConfig = {
       ...config,
-      hosting: { ...hosting, rewrites: mergedRewrites, cleanUrls: true },
+      hosting: newHosting,
     };
+    console.info('=== before generating ===');
+    console.info('hosting:', hosting);
+    console.info('=== after generating ===');
+    console.info('hosting:', newHosting);
+    console.info('');
     writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
     appendFileSync(configPath, '\n');
   });
