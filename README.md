@@ -15,22 +15,23 @@ Add this command to your deployment script (The following is for deploying to fi
 package.json:
 <pre>
 "scripts": {
-  "deploy": "next build && next export && <strong>next-csr-rewrites-generate -f firebase</strong> && firebase deploy"
+  "deploy": "next build && next export && <strong>next-csr-rewrites-generate --format firebase</strong> && firebase deploy"
 }
 </pre>
+Note: of course, you can alos run this command manually!
 
 # Generated hosting rewrite rules
 
 When the following files exist in the deploy directory
 
-```
+<pre>
 /hoge/[hogeId].html
 /fuga/[fugaId].html
-```
+</pre>
 
 The following rewrite rules will be added to firebase.json (cleanUrls will be added together)
 
-```
+<pre>
 {
   "hosting": {
     "rewrites": [
@@ -46,4 +47,5 @@ The following rewrite rules will be added to firebase.json (cleanUrls will be ad
     "cleanUrls": true
   }
 }
-```
+</pre>
+Note: rewrite rules other than dynamic routing will not be updated.
