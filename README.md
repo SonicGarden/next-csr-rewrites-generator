@@ -1,4 +1,4 @@
-# next-csr-firebase-rewrites-generator
+# next-csr-rewrites-generator
 
 Deploy helper command to generate rewrite rules for Next.js CSR application
 
