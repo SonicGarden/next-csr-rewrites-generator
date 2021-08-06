@@ -25,8 +25,9 @@ Note: of course, you can alos run this command manually!
 When the following files exist in the deploy directory
 
 <pre>
-/hoge/[hogeId].html
-/fuga/[fugaId].html
+index.html
+hoge/[hogeId].html
+fuga/[fugaId].html
 </pre>
 
 The following rewrite rules will be added to firebase.json (cleanUrls will be added together)
