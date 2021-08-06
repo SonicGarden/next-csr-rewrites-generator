@@ -1,5 +1,5 @@
 {
-  "name": "@sonicgarnde/next-csr-rewrites-generator",
+  "name": "@sonicgarden/next-csr-rewrites-generator",
   "version": "1.0.0",
   "description": "Deploy helper command to generate rewrite rules for Next.js CSR application",
   "bin": {
