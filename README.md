@@ -1,21 +1,21 @@
 # next-csr-firebase-rewrites-generator
 
-Deploy helper command to generate firebase hosting rewrite rules for Next.js CSR application
+Deploy helper command to generate rewrite rules for Next.js CSR application
 
 # Installation
 
 <pre>
-yarn add @sonicgarden/next-csr-firebase-rewrites-generator
+yarn add @sonicgarden/next-csr-rewrites-generator
 </pre>
 
 # Usage
 
-Add this command to your deployment script
+Add this command to your deployment script (The following is for deploying to firebase hosting)
 
-pakcage.json:
+package.json:
 <pre>
 "scripts": {
-  "deploy": "next build && next export && <strong>next-csr-firebase-rewrites-generator</strong> && firebase deploy"
+  "deploy": "next build && next export && <strong>next-csr-rewrites-generate -f firebase</strong> && firebase deploy"
 }
 </pre>
 
