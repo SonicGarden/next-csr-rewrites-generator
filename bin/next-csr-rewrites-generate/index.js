@@ -47,7 +47,7 @@ try {
   if (format !== 'firebase') throw new Error(`error: invalid format. value=${format}`);
 
   const { generate } = require(`./${format}`);
-  generate();
+  (async () => { await generate() })();
 } catch (e) {
   console.error(e.message);
   exit(1);

@@ -46,9 +46,9 @@ const generate = async () => {
   };
 
   console.info('=== before generating ===');
-  console.info('hosting:', hosting);
+  console.info('hosting:', JSON.stringify(hosting, null, 2));
   console.info('=== after generating ===');
-  console.info('hosting:', newHosting);
+  console.info('hosting:', JSON.stringify(newHosting, null, 2));
   console.info('');
   writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
   appendFileSync(configPath, '\n');
