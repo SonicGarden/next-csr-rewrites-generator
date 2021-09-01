@@ -39,7 +39,7 @@ const generateHosting = async (original) => {
 const generate = async () => {
   const config = JSON.parse(readFileSync(configPath, 'utf8'));
   const { hosting } = config;
-  const newHosting = Array.isArray(hosting) ? Promise.all(hosting.map((_) => generateHosting(_))) : await generateHosting(hosting);
+  const newHosting = Array.isArray(hosting) ? await Promise.all(hosting.map((_) => generateHosting(_))) : await generateHosting(hosting);
   const newConfig = {
     ...config,
     hosting: newHosting,
