@@ -36,7 +36,7 @@ const generateHosting = async (original) => {
   });
 }
 
-const generate = async () => {
+const generate = async (output) => {
   const config = JSON.parse(readFileSync(configPath, 'utf8'));
   const { hosting } = config;
   const newHosting = Array.isArray(hosting) ? await Promise.all(hosting.map((_) => generateHosting(_))) : await generateHosting(hosting);
@@ -44,14 +44,15 @@ const generate = async () => {
     ...config,
     hosting: newHosting,
   };
+  const outputPath = output || configPath;
 
   console.info('=== before generating ===');
   console.info('hosting:', JSON.stringify(hosting, null, 2));
   console.info('=== after generating ===');
   console.info('hosting:', JSON.stringify(newHosting, null, 2));
   console.info('');
-  writeFileSync(configPath, JSON.stringify(newConfig, null, 2));
-  appendFileSync(configPath, '\n');
+  writeFileSync(outputPath, JSON.stringify(newConfig, null, 2));
+  appendFileSync(outputPath, '\n');
   console.info('generated!');
 };
 
