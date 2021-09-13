@@ -7,18 +7,6 @@ const { exit } = require('process');
 const { basename } = require('path');
 const { description } = require('../../package.json');
 
-const generateRules = async () => {
-  try {
-    if (format !== 'firebase') throw new Error(`error: invalid format. value=${format}`);
-  
-    const { generate } = require(`./${format}`);
-    await generate(output);
-  } catch (e) {
-    console.error(e.message);
-    exit(1);
-  }
-};
-
 // eslint-disable-next-line no-undef
 const commandName = basename(__dirname);
 const optionDefinitions = [
@@ -62,4 +50,14 @@ if (help) {
   exit(0);
 }
 
-generateRules(format, output);
+(async () => {
+  try {
+    if (format !== 'firebase') throw new Error(`error: invalid format. value=${format}`);
+  
+    const { generate } = require(`./${format}`);
+    await generate(output);
+  } catch (e) {
+    console.error(e.message);
+    exit(1);
+  }
+})();
