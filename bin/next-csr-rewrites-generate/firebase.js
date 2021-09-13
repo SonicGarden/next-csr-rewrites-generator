@@ -16,7 +16,7 @@ const generateHosting = async (original) => {
   if (!hostingPublic)
     throw new Error(`error: hosting.public attribute is not set in ${configPath}`);
 
-  await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     glob(pattern, (err, files) => {
       if (err) reject(`error: failed to glob. err: ${err}`);
 
