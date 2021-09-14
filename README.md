@@ -20,6 +20,20 @@ package.json:
 </pre>
 Note: of course, you can alos run this command manually!
 
+# Command usage
+
+<pre>
+next-csr-rewrites-generate
+
+  Deploy helper command to generate rewrite rules for Next.js CSR application 
+
+Options
+
+  -f, --format firebase   Format type                                                           
+  -o, --output filepath   Output file path. (If omitted, the original file will be overwritten) 
+  -h, --help              Show usage 
+</pre>
+
 # Generated hosting rewrite rules
 
 When the following files exist in the deploy directory
