@@ -9,11 +9,12 @@ const isDynamicRoute = (string) => {
   return /\[[^[\]/]+\]/.test(string);
 };
 
-const generateHosting = async (inputHostingConfig, inputPath) => {
+const generateHosting = async (inputHostingConfig) => {
   const { public: hostingPublic, rewrites = [] } = inputHostingConfig;
   const pattern = `${hostingPublic}/**/*.html`;
 
-  if (!hostingPublic) throw new Error(`error: hosting.public attribute is not set in ${inputPath}`);
+  if (!hostingPublic)
+    throw new Error('error: hosting.public attribute is not set in the input config');
 
   return new Promise((resolve, reject) => {
     glob(pattern, (err, files) => {
@@ -39,8 +40,8 @@ const generate = async (outputPath = ORIGINAL_PATH, inputPath = ORIGINAL_PATH) =
   const config = JSON.parse(readFileSync(inputPath, 'utf8'));
   const { hosting } = config;
   const newHosting = Array.isArray(hosting)
-    ? await Promise.all(hosting.map((_) => generateHosting(_, inputPath)))
-    : await generateHosting(hosting, inputPath);
+    ? await Promise.all(hosting.map((_) => generateHosting(_)))
+    : await generateHosting(hosting);
   const newConfig = {
     ...config,
     hosting: newHosting,
