@@ -14,7 +14,7 @@ const generateHosting = async (inputHostingConfig) => {
   const pattern = `${hostingPublic}/**/*.html`;
 
   if (!hostingPublic)
-    throw new Error('error: hosting.public attribute is not set in the input config');
+    throw new Error('error: hosting.public attribute is not set in the input file');
 
   return new Promise((resolve, reject) => {
     glob(pattern, (err, files) => {
