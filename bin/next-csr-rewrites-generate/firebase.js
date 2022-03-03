@@ -3,18 +3,18 @@
 const { readFileSync, writeFileSync, appendFileSync } = require('fs');
 const glob = require('glob');
 
-const configPath = 'firebase.json';
+const ORIGINAL_PATH = 'firebase.json';
 
 const isDynamicRoute = (string) => {
   return /\[[^[\]/]+\]/.test(string);
 };
 
-const generateHosting = async (original) => {
-  const { public: hostingPublic, rewrites = [] } = original;
+const generateHosting = async (inputHostingConfig) => {
+  const { public: hostingPublic, rewrites = [] } = inputHostingConfig;
   const pattern = `${hostingPublic}/**/*.html`;
 
   if (!hostingPublic)
-    throw new Error(`error: hosting.public attribute is not set in ${configPath}`);
+    throw new Error('error: hosting.public attribute is not set in the input file');
 
   return new Promise((resolve, reject) => {
     glob(pattern, (err, files) => {
@@ -31,20 +31,21 @@ const generateHosting = async (original) => {
         ...newRewrites,
       ];
 
-      resolve({ ...original, rewrites: mergedRewrites, cleanUrls: true });
+      resolve({ ...inputHostingConfig, rewrites: mergedRewrites, cleanUrls: true });
     });
   });
-}
+};
 
-const generate = async (output) => {
-  const config = JSON.parse(readFileSync(configPath, 'utf8'));
+const generate = async (outputPath = ORIGINAL_PATH, inputPath = ORIGINAL_PATH) => {
+  const config = JSON.parse(readFileSync(inputPath, 'utf8'));
   const { hosting } = config;
-  const newHosting = Array.isArray(hosting) ? await Promise.all(hosting.map((_) => generateHosting(_))) : await generateHosting(hosting);
+  const newHosting = Array.isArray(hosting)
+    ? await Promise.all(hosting.map((_) => generateHosting(_)))
+    : await generateHosting(hosting);
   const newConfig = {
     ...config,
     hosting: newHosting,
   };
-  const outputPath = output || configPath;
 
   console.info('=== before generating ===');
   console.info('hosting:', JSON.stringify(hosting, null, 2));

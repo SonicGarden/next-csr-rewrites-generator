@@ -25,6 +25,13 @@ const optionDefinitions = [
     description: 'Output file path. (If omitted, the original file will be overwritten)',
   },
   {
+    name: 'input',
+    alias: 'i',
+    type: String,
+    typeLabel: '{underline filepath}',
+    description: 'Input file path. (If omitted, the original file will be the input)',
+  },
+  {
     name: 'help',
     alias: 'h',
     type: Boolean,
@@ -32,7 +39,7 @@ const optionDefinitions = [
   },
 ];
 const options = commandLineArgs(optionDefinitions);
-const { format, output, help } = options;
+const { format, output, input, help } = options;
 const sections = [
   {
     header: commandName,
@@ -53,9 +60,9 @@ if (help) {
 (async () => {
   try {
     if (format !== 'firebase') throw new Error(`error: invalid format. value=${format}`);
-  
+
     const { generate } = require(`./${format}`);
-    await generate(output);
+    await generate(output, input);
   } catch (e) {
     console.error(e.message);
     exit(1);
