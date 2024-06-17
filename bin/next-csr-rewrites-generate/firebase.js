@@ -16,24 +16,19 @@ const generateHosting = async (inputHostingConfig) => {
   if (!hostingPublic)
     throw new Error('error: hosting.public attribute is not set in the input file');
 
-  return new Promise((resolve, reject) => {
-    glob(pattern, (err, files) => {
-      if (err) reject(`error: failed to glob. err: ${err}`);
+  const files = await glob(pattern);
+  const targetFiles = files.filter((_) => isDynamicRoute(_));
+  const destinations = targetFiles.map((_) => _.replace(hostingPublic, ''));
+  const newRewrites = destinations.map((destination) => ({
+    source: destination.replace('.html', '').replace(/\[([^[\]/]+)\]/g, ':$1'),
+    destination,
+  }));
+  const mergedRewrites = [
+    ...rewrites.filter(({ destination }) => !isDynamicRoute(destination)),
+    ...newRewrites,
+  ];
 
-      const targetFiles = files.filter((_) => isDynamicRoute(_));
-      const destinations = targetFiles.map((_) => _.replace(hostingPublic, ''));
-      const newRewrites = destinations.map((destination) => ({
-        source: destination.replace('.html', '').replace(/\[([^[\]/]+)\]/g, ':$1'),
-        destination,
-      }));
-      const mergedRewrites = [
-        ...rewrites.filter(({ destination }) => !isDynamicRoute(destination)),
-        ...newRewrites,
-      ];
-
-      resolve({ ...inputHostingConfig, rewrites: mergedRewrites, cleanUrls: true });
-    });
-  });
+  return { ...inputHostingConfig, rewrites: mergedRewrites, cleanUrls: true };
 };
 
 const generate = async (outputPath = ORIGINAL_PATH, inputPath = ORIGINAL_PATH) => {
