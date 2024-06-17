@@ -1,7 +1,7 @@
 'use strict';
 
 const { readFileSync, writeFileSync, appendFileSync } = require('fs');
-const glob = require('glob');
+const { glob } = require('glob');
 
 const ORIGINAL_PATH = 'firebase.json';
 
